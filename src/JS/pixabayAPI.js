@@ -14,12 +14,6 @@ export class PixabayApi{
         const url = `https://pixabay.com/api/?key=${this.#key}&q=${this.#guery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.#perPege}&page=${this.#page}`;
         const {data} = await axios.get(url);
         return data
-        // return fetch(url).then(response => {
-        //     if (!response.ok) {
-        //     throw new Error(response.status);
-        //     }
-        //     return response.json();
-        // });
     }
 
     incrementPage() {
