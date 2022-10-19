@@ -1,4 +1,5 @@
 import { Notify } from "notiflix";
+import axios from 'axios';
 
 export class PixabayApi{
     #perPege = 40;
@@ -6,17 +7,19 @@ export class PixabayApi{
     #totalPages = 0;
     #guery = '';
     #key = '30639478-19eb6c69dd958be70fa1abe06'
-
-
-    getPhotos(search) {
-        const url = `https://pixabay.com/api/?key=${this.#key}&q=${this.#guery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.#perPege}&page=${this.#page}`;
     
-        return fetch(url).then(response => {
-            if (!response.ok) {
-            throw new Error(response.status);
-            }
-            return response.json();
-        });
+
+
+    async getPhotos(search) {
+        const url = `https://pixabay.com/api/?key=${this.#key}&q=${this.#guery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.#perPege}&page=${this.#page}`;
+        const {data} = await axios.get(url);
+        return data
+        // return fetch(url).then(response => {
+        //     if (!response.ok) {
+        //     throw new Error(response.status);
+        //     }
+        //     return response.json();
+        // });
     }
 
     incrementPage() {
